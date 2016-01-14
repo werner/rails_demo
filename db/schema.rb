@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114160511) do
+ActiveRecord::Schema.define(version: 20160114161028) do
 
   create_table "episodes", force: :cascade do |t|
     t.integer  "season_id"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20160114160511) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "movies_purchase_options", id: false, force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "purchase_option_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "movies_purchase_options", ["movie_id"], name: "index_movies_purchase_options_on_movie_id"
+  add_index "movies_purchase_options", ["purchase_option_id"], name: "index_movies_purchase_options_on_purchase_option_id"
+
   create_table "purchase_options", force: :cascade do |t|
     t.decimal  "price"
     t.string   "video_quality"
@@ -42,5 +52,15 @@ ActiveRecord::Schema.define(version: 20160114160511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "seasons_purchase_options", id: false, force: :cascade do |t|
+    t.integer  "season_id"
+    t.integer  "purchase_option_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "seasons_purchase_options", ["purchase_option_id"], name: "index_seasons_purchase_options_on_purchase_option_id"
+  add_index "seasons_purchase_options", ["season_id"], name: "index_seasons_purchase_options_on_season_id"
 
 end
