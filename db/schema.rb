@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114160011) do
+ActiveRecord::Schema.define(version: 20160114160511) do
 
   create_table "episodes", force: :cascade do |t|
     t.integer  "season_id"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20160114160011) do
     t.text     "plot"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_options", force: :cascade do |t|
+    t.decimal  "price"
+    t.string   "video_quality"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "seasons", force: :cascade do |t|
