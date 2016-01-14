@@ -7,17 +7,15 @@ module UnionScope
     base.send :extend, ClassMethods
   end
 
-  #TODO
-  #Sanitize user inputs to avoid sql inyections
   module ClassMethods
     def union_scope(scopes)
-      ActiveRecord::Base.connection.execute(base_union(scopes))
+      execute_sql(base_union(scopes))
     end
 
     def order_union_scope(options={})
       scopes = options[:scopes]
       order_field = options[:order_field]
-      ActiveRecord::Base.connection.execute(base_union(scopes).concat(" ORDER BY #{order_field}"))
+      execute_sql(base_union(scopes).concat(" ORDER BY #{order_field}"))
     end
 
     private
@@ -26,6 +24,10 @@ module UnionScope
       id_column = "#{table_name}.id"
       this_scopes = scopes.push(self)
       scopes.map { |s| s.all.to_sql }.join(" UNION ")
+    end
+
+    def execute_sql(*sql_array)     
+      ActiveRecord::Base.connection.execute(send(:sanitize_sql_array, sql_array))
     end
   end
 end

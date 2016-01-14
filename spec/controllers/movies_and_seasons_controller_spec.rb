@@ -17,6 +17,7 @@ RSpec.describe MoviesAndSeasonsController, type: :controller do
 
       get :index, format: :json
       
+      p JSON.parse(response.body)
       expect(JSON.parse(response.body).fetch('movies_and_seasons').flat_map{|m| { m['title'] => m['created_at'] } }).to(
         eq( [{'Dragon Ball'            => '2014-01-10 00:00:00.000000'},
              {'Lost'                   => '2014-11-10 00:00:00.000000'},
