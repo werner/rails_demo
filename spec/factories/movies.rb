@@ -9,7 +9,7 @@ FactoryGirl.define do
   factory :interstellar, class: 'Movie' do
     title 'Interstellar'
     plot  'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.'
-    created_at '2015-01-10 00:00:00'
+    created_at '2015-01-11 00:00:00'
   end
 
   factory :inception, class: 'Movie' do

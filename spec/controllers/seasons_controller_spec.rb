@@ -16,12 +16,12 @@ RSpec.describe SeasonsController, type: :controller do
 
       get :index, format: :json
 
-      seasons = JSON.parse(response.body).fetch("seasons").inject({}) do |acc, season|
-        acc[season["title"]] = season["episodes"].map{|e| e["number"] }
+      seasons = JSON.parse(response.body).fetch('seasons').inject({}) do |acc, season|
+        acc[season['title']] = season['episodes'].map{|e| e['number'] }
         acc
       end
       expect(seasons).to(
-        eq({"Dragon Ball"=>[30, 40, 50], "Lost"=>[50, 80], "Seinfeld"=>[25, 30, 36, 40]})
+        eq({'Dragon Ball'=>[30, 40, 50], 'Lost'=>[50, 80], 'Seinfeld'=>[25, 30, 36, 40]})
       )
     end
   end

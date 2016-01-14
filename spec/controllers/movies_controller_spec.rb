@@ -17,7 +17,7 @@ RSpec.describe MoviesController, type: :controller do
 
       get :index, format: :json
       
-      expect(JSON.parse(response.body).fetch("movies").map{|m| m["title"]}).to(
+      expect(JSON.parse(response.body).fetch('movies').map{|m| m['title']}).to(
         eq([interstellar, three_hundred, inception].map(&:title))
       )
     end
