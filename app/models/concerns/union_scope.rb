@@ -8,17 +8,6 @@ module UnionScope
   end
 
   module ClassMethods
-    def union_scope(scopes)
-      execute_sql(base_union(scopes))
-    end
-
-    def order_union_scope(options={})
-      scopes = options[:scopes]
-      order_field = options[:order_field]
-      execute_sql(base_union(scopes).concat(" ORDER BY #{order_field}"))
-    end
-
-    private
 
     def base_union(scopes)
       id_column = "#{table_name}.id"
@@ -26,8 +15,20 @@ module UnionScope
       scopes.map { |s| s.all.to_sql }.join(" UNION ")
     end
 
-    def execute_sql(*sql_array)     
-      ActiveRecord::Base.connection.execute(send(:sanitize_sql_array, sql_array))
+    def union_with_order(options={})
+      scopes = options[:scopes]
+      order_field = options[:order_field]
+      base_union(scopes).concat(" ORDER BY #{order_field}")
+    end
+
+    def execute_union_with_order(options={})
+      execute_sql(union_with_order(options))
+    end
+
+    private
+
+    def execute_sql(sql)
+      ActiveRecord::Base.connection.execute(send(:sanitize_sql_array, sql))
     end
   end
 end
