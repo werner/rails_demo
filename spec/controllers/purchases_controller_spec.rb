@@ -15,8 +15,7 @@ RSpec.describe PurchasesController, type: :controller do
       expect {
         post :create, 
           purchase: {
-            purchasable_id: three_hundred.id,
-            purchasable_type: three_hundred.class.to_s,
+            purchasable: three_hundred,
             purchase_option_id: three_hundred.purchase_options.first.id
           }, format: :json
       }.to change(Purchase, :count).by(1)
