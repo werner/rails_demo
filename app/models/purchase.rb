@@ -6,7 +6,7 @@ class Purchase < ActiveRecord::Base
 
   before_create do
     if product = Purchase.where(purchasable: self.purchasable).first and product.active?
-      errors.add(:base, "You are still available to watch #{self.purchasable.title}")
+      errors.add(:base, I18n.t('activerecord.errors.models.purchase.active_product', title: self.purchasable.title))
       false 
     end
   end
