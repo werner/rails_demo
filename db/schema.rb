@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114163141) do
+ActiveRecord::Schema.define(version: 20160115222023) do
 
   create_table "episodes", force: :cascade do |t|
     t.integer  "season_id"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 20160114163141) do
   end
 
   add_index "purchase_options", ["choosable_type", "choosable_id"], name: "index_purchase_options_on_choosable_type_and_choosable_id"
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "purchase_option_id"
+    t.integer  "user_id"
+    t.integer  "purchasable_id"
+    t.string   "purchasable_type"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "purchases", ["purchasable_id"], name: "index_purchases_on_purchasable_id"
+  add_index "purchases", ["purchasable_type", "purchasable_id"], name: "index_purchases_on_purchasable_type_and_purchasable_id"
 
   create_table "seasons", force: :cascade do |t|
     t.string   "title"
