@@ -1,6 +1,9 @@
 class Purchase < ActiveRecord::Base
   belongs_to :purchasable, polymorphic: true
+  belongs_to :purchase_option
   belongs_to :user
+
+  validates :purchasable, presence: true
 
   ACTIVE_DAYS = 2.days
 
