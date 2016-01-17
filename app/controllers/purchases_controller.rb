@@ -1,3 +1,4 @@
+# Public: Endpoint for a user to perform a purchase.
 class PurchasesController < ApplicationController
   def create
     purchase = Purchase.new(purchase_params)
@@ -13,6 +14,8 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase).permit(:purchase_option_id, :purchasable_id, :purchasable_type)
+    params.require(:purchase).permit(:purchase_option_id,
+                                     :purchasable_id,
+                                     :purchasable_type)
   end
 end

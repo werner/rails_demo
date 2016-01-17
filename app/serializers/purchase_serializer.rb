@@ -1,3 +1,4 @@
+# Internal: Purchase serializer
 class PurchaseSerializer < ActiveModel::Serializer
   attributes :purchasable, :purchase_option, :user
 

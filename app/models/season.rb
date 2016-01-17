@@ -1,3 +1,4 @@
+# Internal: Season model
 class Season < ActiveRecord::Base
   has_many :episodes
 

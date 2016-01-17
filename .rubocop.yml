@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'
+    - 'bin/setup'
+    - 'config/**/*'
+    - 'Rakefile'

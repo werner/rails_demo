@@ -1,3 +1,4 @@
+# Public: Endpoint to return all movies, ordered by creation.
 class MoviesController < ApplicationController
   def index
     movies = Rails.cache.fetch 'movies', expires_in: 7.days do

@@ -1,3 +1,4 @@
+# Internal: Season serializer
 class SeasonSerializer < ActiveModel::Serializer
   attributes :id, :title, :plot, :created_at, :episodes
 

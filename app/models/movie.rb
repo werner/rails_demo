@@ -1,3 +1,4 @@
+# Internal: Movie model
 class Movie < ActiveRecord::Base
   include UnionScope
 
