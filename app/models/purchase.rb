@@ -5,6 +5,8 @@ class Purchase < ActiveRecord::Base
 
   validates :purchasable, presence: true
 
+  scope :alive, -> { where("created_at >= '#{Time.now - ACTIVE_DAYS}'") }
+
   ACTIVE_DAYS = 2.days
 
   before_create do
